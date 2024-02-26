@@ -1,0 +1,61 @@
+name: Build
+on:
+  push:
+    branches:
+      - main
+env:
+  TZ: Asia/Shanghai
+  HOST: ${{ secrets.HOST }}
+  KEY: ${{ secrets.KEY }}
+  USERNAME: ${{ secrets.USERNAME }}
+  WEB_ROOT: ${{ secrets.WEB_ROOT }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+          run_install: false
+      - name: Setup node environment
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: 'package.json'
+          cache: 'pnpm'
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - name: Install dependents
+        run: pnpm install
+      - name: Build
+        run: pnpm build
+      - name: Upload
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ env.HOST }}
+          username: ${{ env.USERNAME }}
+          key: ${{ env.KEY }}
+          rm: true
+          source: "dist"
+          target: "${{ env.WEB_ROOT }}"
+      - name: Deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ env.HOST }}
+          username: ${{ env.USERNAME }}
+          key: ${{ env.KEY }}
+          script: |
+            cd ${{ env.WEB_ROOT }}
+            mv dist/* .
+            rm -rf dist
