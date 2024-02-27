@@ -4,6 +4,7 @@ import 海上世界 from './img/海上世界.png'
 import 砂之船 from './img/砂之船.png'
 import 骏豪会 from './img/骏豪会.png'
 import 五缘湾天虹 from './img/五缘湾天虹.png'
+import 五缘湾天虹积分 from './img/五缘湾天虹积分.png'
 import SM城市广场 from './img/SM城市广场.png'
 import 牡丹港都大酒店 from './img/牡丹港都大酒店.png'
 import 五通商业街 from './img/五通商业街.png'
@@ -38,13 +39,15 @@ export const parkingList = [
     name: '五缘湾天虹',
     address: '天虹商场五缘湾店地下停车场',
     price: [
-      ['1小时', '免费'],
+      ['0-30分钟', '免费'],
+      ['30分钟-1小时', '5元'],
       ['1小时以上', '5元/每小时'],
       ['封顶', '40元/每天'],
       [
         '备注',
-        `任意小票去负一楼中间服务台兑换3小时停车券, 也可以点<a href="https://cmssy.jslife.com.cn/jys-h5/bg-qrcode-coupon.html?qrId=dab81041506a45df9308ab08d6df7900&planNo=DP202207251136029802332&userNo=thzdy666666&qrType=fix&cbTimeMs=1696423899314&raPdCt=1&UNION_ID=oRWxE58Xuxel24H0scJmpz2cEZgI&clientId=on61lxH6ka2mrlxRzao7KdJ_rJUo&resultCode=0&USER_ID=976aa4ce3281451b96eed1cfa8f84db8&TEL=18959294083&APP_TYPE=WX_JTC">这里</a>或者扫下方二维码
-<img src="${五缘湾天虹}"/>`,
+        `先拍小票兑换积分或者微信消费也可以积分，然后通过下面这个二维码兑换积分<a href="https://static-h5.tianhong.cn/hlj/platform-judge/"><img src="${五缘湾天虹积分}"></a>
+然后再扫下面这个二维码绑定车牌缴费<a href="https://www.tianhong.cn/mp?type=parking&storeCode=00605"><img src="${五缘湾天虹}"></a>
+      `,
       ],
     ],
   },
