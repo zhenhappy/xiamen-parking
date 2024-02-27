@@ -1,14 +1,16 @@
-import {
-  createRouter,
-  createWebHistory,
-  type RouteRecordRaw
-} from 'vue-router'
+import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router'
 
-const components: Record<string, { route?: RouteRecordRaw }> = import.meta.glob('../views/**/index.vue', {
-  eager: true,
-  import: 'default'
-})
-const routes = Object.entries(components).map(([src, component]) => {
+const Home = {
+  path: '/',
+  alias: '/home',
+  component: () => import('../views/Home/index.vue'),
+}
+const AutoRoutes = Object.entries(
+  import.meta.glob('../views/**/index.vue', {
+    eager: true,
+    import: 'default',
+  }) as Record<string, { route?: RouteRecordRaw }>,
+).map(([src, component]) => {
   const route = component.route! || {}
   route.path = route.path || src.replace('../views', '').replace('/index.vue', '').toLowerCase() || ''
   route.name = route.name || route.path.split('/').filter(Boolean).join('-') || 'home'
@@ -16,12 +18,6 @@ const routes = Object.entries(components).map(([src, component]) => {
   route.component = component
   return route
 })
-const HomePage = routes.find(route => (route.name as string).toLowerCase() === 'home')
-const Home = HomePage ? [{
-  path: '/',
-  alias: '/home',
-  component: HomePage.component
-} as RouteRecordRaw] : []
 const ClearCache: RouteRecordRaw = {
   name: '/clear',
   path: '/clear',
@@ -30,28 +26,28 @@ const ClearCache: RouteRecordRaw = {
       // 判断是否已经清空缓存，防止进入死循环
       if (window.name !== 'refreshed') {
         // 清空localStorage
-        window.localStorage.clear();
+        window.localStorage.clear()
         // 清空sessionStorage
-        window.sessionStorage.clear();
+        window.sessionStorage.clear()
         // 清空caches
-        const caches = await window.caches?.keys();
-        await Promise.all(caches?.map((cacheName) => window.caches.delete(cacheName)));
+        const caches = await window.caches?.keys()
+        await Promise.all(caches?.map((cacheName) => window.caches.delete(cacheName)))
         // 清空cookies
-        const cookies = await window.cookieStore?.getAll();
-        await Promise.all(cookies?.map(({name: cookieName}) => window.cookieStore.delete(cookieName)));
+        const cookies = await window.cookieStore?.getAll()
+        await Promise.all(cookies?.map(({ name: cookieName }) => window.cookieStore.delete(cookieName)))
         // 清空indexedDB
-        const databases = await window.indexedDB?.databases();
-        await Promise.all(databases?.map(({name}) => window.indexedDB.deleteDatabase(name!)));
+        const databases = await window.indexedDB?.databases()
+        await Promise.all(databases?.map(({ name }) => window.indexedDB.deleteDatabase(name!)))
         // 清空serviceWorker
-        await window.serviceWorker?.update();
+        await window.serviceWorker?.update()
         // 清空完成设置标志位
-        window.name = 'refreshed';
+        window.name = 'refreshed'
         // 刷新页面
         window.location.reload()
       }
     },
     beforeRouteLeave() {
-      window.name = '';
+      window.name = ''
     },
     computed: {
       refreshed: () => window.name === 'refreshed',
@@ -77,13 +73,8 @@ const NotFound: RouteRecordRaw = {
 }
 
 const router = createRouter({
-  routes: [
-    ...Home,
-    ...routes,
-    ClearCache,
-    NotFound,
-  ],
-  history: createWebHistory(import.meta.env.BASE_URL)
+  routes: [Home, ...AutoRoutes, ClearCache, NotFound],
+  history: createWebHashHistory(import.meta.env.BASE_URL),
 })
 
 export default router
