@@ -45,8 +45,8 @@ export const parkingList = [
       ['封顶', '40元/每天'],
       [
         '备注',
-        `先拍小票兑换积分或者微信消费也可以积分，然后通过下面这个二维码兑换积分<a href="https://static-h5.tianhong.cn/hlj/platform-judge/"><img src="${五缘湾天虹积分}"></a>
-然后再扫下面这个二维码绑定车牌缴费<a href="https://www.tianhong.cn/mp?type=parking&storeCode=00605"><img src="${五缘湾天虹}"></a>
+        `先拍小票兑换积分或者微信消费也可以积分，然后通过下面这个二维码兑换积分<img src="${五缘湾天虹积分}">
+然后再扫下面这个二维码绑定车牌缴费<img src="${五缘湾天虹}">
       `,
       ],
     ],
