@@ -5,8 +5,9 @@ import { defineConfig } from 'vite'
 
 // Vue 配置
 import Vue from '@vitejs/plugin-vue'
-import AutoImport from 'unplugin-auto-import/vite'
+import Legacy from '@vitejs/plugin-legacy'
 import VueMacros from 'unplugin-vue-macros/vite'
+import AutoImport from 'unplugin-auto-import/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -29,6 +30,9 @@ export default defineConfig({
       imports: ['vue', 'vue-router'],
       // dirs: ['./src/config'],
       dts: './src/auto-imports.d.ts',
+    }),
+    Legacy({
+      targets: ['chrome >= 49'],
     }),
   ],
 })
