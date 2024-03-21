@@ -12,6 +12,7 @@ import 世贸双子塔 from './img/世贸双子塔.png'
 import 佳丽海鲜酒楼 from './img/佳丽海鲜酒楼.png'
 import Cocopark from './img/Cocopark.png'
 import 美季魔法温泉 from './img/美季魔法温泉.png'
+import 果壳街区 from './img/果壳街区.png'
 
 export const parkingList = [
   {
@@ -971,7 +972,7 @@ export const parkingList = [
       [
         '备注',
         `3小时停车券，点<a href="https://yun.bolink.club/zld/qr/d/zc4805F6547C7d65b33">这里</a>或者扫下方二维码
-<img src="${美季魔法温泉}`,
+<img src="${美季魔法温泉}"/>`,
       ],
     ],
   },
@@ -983,6 +984,17 @@ export const parkingList = [
       ['15分钟-1小时', '5元'],
       ['1小时以上', `5元/每小时`],
       ['封顶', `50元/天`],
+    ],
+  },
+  {
+    name: '果壳街区',
+    address: '果壳街区停车场',
+    price: [
+      ['20分钟', '免费'],
+      ['20分钟-1小时', '5元'],
+      ['1小时以上', `3元/每半小时`],
+      ['封顶', `60元/天`],
+      ['备注', `停车缴费<a href="http://s.keytop.cn/rfzahz"><img src="${果壳街区}"/></a>`],
     ],
   },
 ]
