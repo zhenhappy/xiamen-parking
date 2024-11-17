@@ -371,7 +371,7 @@ export const parkingList = [
         '备注',
         `凭贵宾卡或餐饮消费停车券5小时内免费,
 简餐甜品或其他类停车券3小时内免费,
-点<a href="http://www.hikparking.com/wechat/scanQrcodeCoupon/0/11522062718211502000/1971944475456">这里</a>或扫下方二维码领取3小时停车券
+点<a href="https://www.hikparking.com/wechat/scanQrcodeCoupon/0/11524110116442102000/2045983461601">这里</a>或扫下方二维码领取3小时停车券
 <img src="${骏豪会}"/>`,
       ],
     ],
