@@ -1,3 +1,31 @@
-# 厦门地区常用停车场收费收藏
+<p align="center">
+  <img src="https://github.com/uni-helper/vitesse-uni-app/raw/main/.github/images/preview.png" width="300"/>
+</p>
 
-本项目目的用于查询一些主要商圈地段的停车收费标准，并且有免费抵用的二维码也会放上来，有时候开到停车场出口收费才想起来忘记扫码抵用停车券了。
+<h2 align="center">
+Vitesse for uni-app
+</h2>
+<p align="center">
+  <a href="https://vitesse-uni-app.netlify.app/">📱 在线预览</a>
+  <a href="https://vitesse-docs.netlify.app/">📖 阅读文档</a>
+</p>
+
+## 特性
+
+- ⚡️ [Vue 3](https://github.com/vuejs/core), [Vite](https://github.com/vitejs/vite), [pnpm](https://pnpm.io/), [esbuild](https://github.com/evanw/esbuild) - 就是快！
+
+- 🗂 [基于文件的路由](./src/pages)
+
+- 📦 [组件自动化加载](./src/components)
+
+- 📑 [布局系统](./src/layouts)
+
+- 🎨 [UnoCSS](https://github.com/unocss/unocss) - 高性能且极具灵活性的即时原子化 CSS 引擎
+
+- 😃 [各种图标集为你所用](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
+
+- 🔥 使用 [新的 `<script setup>` 语法](https://github.com/vuejs/rfcs/pull/227)
+
+- 📥 [API 自动加载](https://github.com/antfu/unplugin-auto-import) - 直接使用 Composition API 无需引入
+
+- 🦾 [TypeScript](https://www.typescriptlang.org/) & [ESLint](https://eslint.org/) - 保证代码质量

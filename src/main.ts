@@ -1,14 +1,12 @@
-import '@vant/touch-emulator'
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import { createStyle } from '@/style'
-
+import { createSSRApp } from 'vue'
+import * as Pinia from 'pinia'
 import App from './App.vue'
-import router from './router'
+import 'uno.css'
 
-const app = createApp(App)
-app.use(router)
-app.use(createPinia())
-app.use(createStyle())
-
-app.mount('#app')
+export function createApp() {
+  const app = createSSRApp(App)
+  app.use(Pinia.createPinia())
+  return {
+    app,
+  }
+}

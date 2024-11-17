@@ -1,40 +1,29 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
-    }
-  ],
+  "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
-    "types": ["unplugin-vue-macros/macros-global"]
+    "ignoreDeprecations": "5.0",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": [
+      "unplugin-vue-macros/macros-global",
+      "@dcloudio/types",
+      "@mini-types/alipay",
+      "miniprogram-api-typings",
+      "@uni-helper/uni-types"
+    ],
+    "sourceMap": true
   },
   "vueCompilerOptions": {
-    "plugins": [
-      "@vue-macros/volar/define-options",
-      "@vue-macros/volar/define-models",
-      "@vue-macros/volar/define-props",
-      "@vue-macros/volar/define-props-refs",
-      "@vue-macros/volar/short-vmodel",
-      "@vue-macros/volar/define-slots",
-      "@vue-macros/volar/jsx-directive",
-      "@vue-macros/volar/setup-jsdoc",
-      "@vue-macros/volar/export-render",
-      "@vue-macros/volar/export-expose",
-      "@vue-macros/volar/export-props"
-    ],
-    "vueMacros": {
-      "exportExpose": {
-        "include": ["**/export-expose/**"]
-      },
-      "exportProps": {
-        "include": ["**/export-props/**"]
-      },
-      "exportRender": {
-        "include": ["**/export-render/**"]
-      }
-    }
+    // 调整 Volar（Vue 语言服务工具）解析行为，用于为 uni-app 组件提供 TypeScript 类型
+    "plugins": ["@uni-helper/uni-types/volar-plugin"]
   },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ]
 }
